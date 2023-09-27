@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Task 5</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form class="well form-horizontal" action="" method="post" id="contact_form">
+            <fieldset>
+                <legend>
+                    <center>
+                        <h2><b>Registration Form</b></h2>
+                    </center>
+                </legend><br>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">First Name</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="first_name" placeholder="First Name" class="form-control" type="text">
+                        </div>
+                        <small class="error" id="first_name_error"></small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Last Name</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="last_name" placeholder="Last Name" class="form-control" type="text">
+                        </div>
+                        <small class="error" id="last_name_error"></small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">E-Mail</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input name="email" placeholder="E-Mail Address" class="form-control" type="text">
+                        </div>
+                        <small class="error" id="email_error"></small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Contact No.</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                            <input name="contact_no" placeholder="(639)" class="form-control" type="text">
+                        </div>
+                        <small class="error" id="contact_no_error"></small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Address</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <small class="error" id="address_error"></small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">City</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="City" placeholder="City" class="form-control" type="text">
+                        </div>
+                        <small class="error" id="city_error"></small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Do you have hosting?</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioMale" value="Male">
+                            <label class="form-check-label" for="inlineRadioMale">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioFemale" value="Female">
+                            <label class="form-check-label" for="inlineRadioFemale">No</label>
+                        </div>
+                        <small class="error" id="hosting_error"></small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Product description</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
+                        <small class="error" id="product_description_error"></small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4 offset-md-4">
+                        <button type="submit" class="btn btn-warning">
+                            <i class="glyphicon glyphicon-send"></i> SUBMIT
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById("contact_form").addEventListener("submit", function (event) {
+            let errorFields = [];
+
+            let firstName = document.getElementsByName("first_name")[0].value;
+            if (firstName.trim() === "") {
+                errorFields.push("First Name");
+                document.getElementById("first_name_error").textContent = "Please supply appropriate First Name";
+            } else {
+                document.getElementById("first_name_error").textContent = "";
+            }
+            let lastName = document.getElementsByName("last_name")[0].value;
+            if (lastName.trim() === "") {
+                errorFields.push("Last Name");
+                document.getElementById("last_name_error").textContent = "Please supply appropriate Last Name";
+            } else {
+                document.getElementById("last_name_error").textContent = "";
+            }
+
+            // Validate Email
+            let email = document.getElementsByName("email")[0].value;
+            if (email.trim() === "") {
+                errorFields.push("Email");
+                document.getElementById("email_error").textContent = "Please supply appropriate Email";
+            } else {
+                document.getElementById("email_error").textContent = "";
+            }
+
+            // Validate Contact No.
+            let contactNo = document.getElementsByName("contact_no")[0].value;
+            if (contactNo.trim() === "") {
+                errorFields.push("Contact No.");
+                document.getElementById("contact_no_error").textContent = "Please supply appropriate Contact No.";
+            } else {
+                document.getElementById("contact_no_error").textContent = "";
+            }
+
+            // Validate Address
+            let address = document.getElementById("exampleFormControlTextarea1").value;
+            if (address.trim() === "") {
+                errorFields.push("Address");
+                document.getElementById("address_error").textContent = "Please supply appropriate Address";
+            } else {
+                document.getElementById("address_error").textContent = "";
+            }
+            let city = document.getElementsByName("City")[0].value;
+            if (city.trim() === "") {
+                errorFields.push("City");
+                document.getElementById("city_error").textContent = "Please supply appropriate City";
+            } else {
+                document.getElementById("city_error").textContent = "";
+            }
+            let hostingOptions = document.getElementsByName("inlineRadioOptions");
+            let hostingChecked = false;
+            for (let option of hostingOptions) {
+                if (option.checked) {
+                    hostingChecked = true;
+                    break;
+                }
+            }
+            if (!hostingChecked) {
+                errorFields.push("Do you have hosting?");
+                document.getElementById("hosting_error").textContent = "Please select an option for Hosting";
+            } else {
+                document.getElementById("hosting_error").textContent = "";
+            }
+            let productDescription = document.getElementById("exampleFormControlTextarea2").value;
+            if (productDescription.trim() === "") {
+                errorFields.push("Product description");
+                document.getElementById("product_description_error").textContent = "Please supply appropriate Product description";
+            } else {
+                document.getElementById("product_description_error").textContent = "";
+            }
+            if (errorFields.length > 0) {
+                event.preventDefault();
+                alert("Please correct the following fields:\n" + errorFields.join(", "));
+            }
+        });
+    </script>
+</body>
+</html>
